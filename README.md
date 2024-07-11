@@ -50,7 +50,6 @@ In the final stage, the model aims to address the entire future trajectory task 
 
 ## 🔍 Overview
 
-### 💡 Key Insight
 <p align="center">
   <img src="./assets/Intro_cmp.jpg" width=100% >
 </p>
