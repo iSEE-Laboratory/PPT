@@ -4,7 +4,7 @@
   <p align="center">
     <a href='https://xiaotong-lin.github.io/' target='_blank'>Xiaotong Lin</a>&emsp;
     <a href='https://tmliang.github.io/' target='_blank'>Tianming Liang</a>&emsp;
-    <a href='https://www.isee-ai.cn/~hujianfang/' target='_blank'>Jianhuang Lai</a>&emsp;
+    <a href='https://scholar.google.com/citations?user=w3GjGqoAAAAJ' target='_blank'>Jianhuang Lai</a>&emsp;
     <a href='https://www.isee-ai.cn/~hujianfang/' target='_blank'>Jian-Fang Hu*</a>&emsp;
     <br>
     Sun Yat-sen University
