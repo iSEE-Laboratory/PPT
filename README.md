@@ -46,12 +46,9 @@ In the final stage, the model aims to address the entire future trajectory task 
 - [2023-09-01] Our paper is available on the [Arxiv](https://arxiv.org/pdf/2308.16905) &#x1F389; Code/Models are coming soon. Please stay tuned! ☕️
 
 ## 📝 TODO List
-- [x] Release more demos.
-- [x] Data preparation.
-- [x] Release training and evaluation (short-term) codes.
-- [x] Release checkpoints.
-- [ ] Release evaluation (long-term) and optimization codes.
-- [ ] Release code for visualization.
+- [ ] Data preparation.
+- [ ] Release training and evaluation codes.
+- [ ] Release checkpoints.
 
 ## 🔍 Overview
 
