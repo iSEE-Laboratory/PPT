@@ -52,7 +52,7 @@ In the final stage, the model aims to address the entire future trajectory task 
 
 ### 💡 Key Insight
 <p align="center">
-  ![Architecture](./assets/Architecture.pdf)
+  <img src="./assets/Intro_cmp.jpg" width=100% >
 </p>
 As shown, we propose a Progressive Pretext Task learning (PPT) framework for trajectory prediction, aiming to incrementally enhance the model's capacity to understand the past trajectory and predict the future trajectory.
 Specifically, our framework consists of three stages of progressive training tasks, as illustrated in subfigure (b). In Stage I, we pretrain our predictor on pretext Task-I, aiming to fully understand the short-term dynamics of each trajectory, by predicting the next position of a trajectory of arbitrary length. In Stage II, we further train the predictor on pretext Task-II, intending to capture the long-term dependencies, by predicting the destination of a trajectory.
