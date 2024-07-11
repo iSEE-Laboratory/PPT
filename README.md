@@ -22,27 +22,9 @@
     <img src='https://img.shields.io/badge/Paper-PDF-yellow?style=flat&logo=arXiv&logoColor=yellow'>
   </a>
 
-[comment]: <> (  <a href='https://sirui-xu.github.io/InterDiff/'>)
-
-[comment]: <> (  <img src='https://img.shields.io/badge/Project-Page-green?style=flat&logo=Google%20chrome&logoColor=green'></a>)
-
-[comment]: <> (  <a href='https://youtu.be/Ako1n9HEGBo'>)
-
-[comment]: <> (  <img src='https://img.shields.io/badge/YouTube-Video-EA3323?style=flat&logo=youtube&logoColor=EA3323'></a>)
-
-[comment]: <> (  <a href='https://www.bilibili.com/video/BV1Xh4y187ZH/'>)
-
-[comment]: <> (    <img src='https://img.shields.io/badge/Bilibili-Video-4EABE6?style=flat&logo=Bilibili&logoColor=4EABE6'></a>)
-
-[comment]: <> (  <a href='https://zhuanlan.zhihu.com/p/658463741'>)
-
-[comment]: <> (    <img src='https://img.shields.io/badge/Zhihu-Doc-2F6BE0?style=flat&logo=Zhihu&logoColor=2F6BE0'></a> )
   <a href='https://github.com/iSEE-Laboratory/PPT'>
     <img src='https://img.shields.io/badge/GitHub-Code-black?style=flat&logo=github&logoColor=white'></a>
 
-[comment]: <> (  <a href="" target='_blank'>)
-
-[comment]: <> (    <img src="https://visitor-badge.laobi.icu/badge?page_id=Sirui-Xu.InterDiff&left_color=gray&right_color=orange">)
   </a>
 </p>
 
