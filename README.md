@@ -73,7 +73,7 @@ If you find our work helpful, please cite:
 
 ```bibtex
 @inproceedings{
-   lin2024ppt,
+   lin2024progressive,
    title={Progressive Pretext Task Learning for Human Trajectory Prediction},
    author={Lin, Xiaotong and Liang, Tianming and Lai, Jianhuang and Hu, Jian-Fang},
    booktitle={ECCV},
