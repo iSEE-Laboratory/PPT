@@ -15,7 +15,7 @@
 
 </p>
 <p align="center">
-  <a href='https://arxiv.org/abs/2308.16905'>
+  <a href=''>
     <img src='https://img.shields.io/badge/Arxiv-2308.16905-A42C25?style=flat&logo=arXiv&logoColor=A42C25'>
   </a>
   <a href=''>
