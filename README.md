@@ -1,7 +1,8 @@
+# Progressive Pretext Task Learning for Human Trajectory Prediction
 <p align="center">
 <!-- <h1 align="center">Progressive Pretext Task Learning for Human Trajectory Prediction</h1> -->
-<strong>Progressive Pretext Task Learning for Human Trajectory Prediction</strong></h1>
-  <p align="center">
+<!-- <strong>Progressive Pretext Task Learning for Human Trajectory Prediction</strong></h1> -->
+<p align="center">
     <a href='https://xiaotong-lin.github.io/' target='_blank'>Xiaotong Lin</a>&emsp;
     <a href='https://tmliang.github.io/' target='_blank'>Tianming Liang</a>&emsp;
     <a href='https://scholar.google.com/citations?user=w3GjGqoAAAAJ' target='_blank'>Jianhuang Lai</a>&emsp;
