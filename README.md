@@ -1,5 +1,5 @@
 <p align="center">
-<strong class="custom-title">Progressive Pretext Task Learning for Human Trajectory Prediction</strong></h1>
+<strong>Progressive Pretext Task Learning for Human Trajectory Prediction</strong></h1>
   <p align="center">
     <a href='https://xiaotong-lin.github.io/' target='_blank'>Xiaotong Lin</a>&emsp;
     <a href='https://tmliang.github.io/' target='_blank'>Tianming Liang</a>&emsp;
