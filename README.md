@@ -41,9 +41,7 @@ In the final stage, the model aims to address the entire future trajectory task 
 
 
 ## 🔥 News
-- [2023-10-27] Release training and evaluation codes, as well as our checkpoints. Let's play with it!
-- [2023-09-16] Release a [demo video](https://sirui-xu.github.io/InterDiff/images/teaser_1080p.mp4) 📹.
-- [2023-09-01] Our paper is available on the [Arxiv](https://arxiv.org/pdf/2308.16905) &#x1F389; Code/Models are coming soon. Please stay tuned! ☕️
+
 
 ## 📝 TODO List
 - [ ] Data preparation.
