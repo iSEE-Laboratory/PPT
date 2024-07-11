@@ -1,6 +1,3 @@
-# PPT
-(ECCV 2024) Official PyTorch implementation of paper "Progressive Pretext Task Learning for Human Trajectory Prediction"
-
 <p align="center">
 <!-- <h1 align="center">Progressive Pretext Task Learning for Human Trajectory Prediction</h1> -->
 <strong>Progressive Pretext Task Learning for Human Trajectory Prediction</strong></h1>
