@@ -28,7 +28,7 @@
   </a>
 </p>
 
-## 🏠 About
+## 🏠 Abstract
 <div style="text-align: center;">
     <img src="assets/Intro_cmp.jpg" width=100% >
 </div>
