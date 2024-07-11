@@ -30,7 +30,7 @@
 
 ## 🏠 About
 <div style="text-align: center;">
-    <img src="assets/teaser.png" width=100% >
+    <img src="assets/Intro_cmp.pdf" width=100% >
 </div>
 Human trajectory prediction is a practical task of predicting the future positions of pedestrians on the road, which typically covers all temporal ranges from short-term to long-term within a trajectory. However, existing works attempt to address the entire trajectory prediction with a singular, uniform training paradigm, neglecting the distinction between short-term and long-term dynamics in human trajectories. To overcome this limitation, we introduce a novel Progressive Pretext Task learning (PPT) framework, which progressively enhances the model's capacity of capturing short-term dynamics and long-term dependencies for the final entire trajectory prediction. Specifically, we elaborately design three stages of training tasks in the PPT framework. In the first stage, the model learns to comprehend the short-term dynamics through a stepwise next-position prediction task. 
 In the second stage, the model is further enhanced to understand long-term dependencies through a destination prediction task. 
@@ -57,8 +57,7 @@ In the final stage, the model aims to address the entire future trajectory task 
 
 ### 💡 Key Insight
 <p align="center">
-  <img src="assets/5.gif" width="50%"/><img src="assets/24.gif" width="50%"/>
-  <img src="assets/50.gif" width="50%"/><img src="assets/38.gif" width="50%"/>
+  <img src="assets/Architecture.pdf" width=100% >
 </p>
 As shown, we propose a Progressive Pretext Task learning (PPT) framework for trajectory prediction, aiming to incrementally enhance the model's capacity to understand the past trajectory and predict the future trajectory.
 Specifically, our framework consists of three stages of progressive training tasks, as illustrated in subfigure (b). In Stage I, we pretrain our predictor on pretext Task-I, aiming to fully understand the short-term dynamics of each trajectory, by predicting the next position of a trajectory of arbitrary length. In Stage II, we further train the predictor on pretext Task-II, intending to capture the long-term dependencies, by predicting the destination of a trajectory.
