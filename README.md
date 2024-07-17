@@ -14,8 +14,8 @@
 
 </p>
 <p align="center">
-  <a href=''>
-    <img src='https://img.shields.io/badge/Arxiv-2308.16905-A42C25?style=flat&logo=arXiv&logoColor=A42C25'>
+  <a href='https://arxiv.org/pdf/2407.11588'>
+    <img src='https://img.shields.io/badge/Arxiv-2407.11588-A42C25?style=flat&logo=arXiv&logoColor=A42C25'>
   </a>
   <a href=''>
     <img src='https://img.shields.io/badge/Paper-PDF-yellow?style=flat&logo=arXiv&logoColor=yellow'>
