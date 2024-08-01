@@ -37,9 +37,9 @@ In the final stage, the model aims to address the entire future trajectory task 
 </br>
 
 ## 📖 Implementation
-### Installation
+* ### Installation
 #### Environment
-* Python == 3.8.3
+ - Python == 3.8.3
 
 #### Dependencies
 
