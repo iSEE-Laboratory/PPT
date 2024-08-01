@@ -53,7 +53,7 @@ pip install -r requirements.txt
 We provide a complete set of pre-trained models including:
 
 * Well-pretrained model on Task-I:
-* Well-trained model after warm-up:
+* Th model after warm-up:
 * Well-pretrained model on Task-II:
 * Well-trained model on Task-III:
 
