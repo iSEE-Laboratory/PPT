@@ -37,7 +37,9 @@ In the final stage, the model aims to address the entire future trajectory task 
 </br>
 
 ## 📖 Implementation
-
+## Installation
+·Python == 3.7.9
+·
 
 ## 🔥 News
 
