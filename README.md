@@ -67,6 +67,10 @@ After the prepartion work, the whole project should has the following structure:
 ./MemoNet
 ├── README.md
 ├── data                            # datasets
+│   ├── ETH_UCY
+│   │   ├── social_eth_test_256_0_50.pickle
+│   │   ├── social_eth_train_256_0_50.pickle
+│   │   └── ...
 │   ├── social_sdd_test_4096_0_100.pickle
 │   └── social_sdd_train_512_0_100.pickle
 ├── models                          # core models
