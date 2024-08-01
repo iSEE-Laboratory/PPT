@@ -76,8 +76,8 @@ After the prepartion work, the whole project should has the following structure:
 ├── requirements.txt
 ├── run.sh
 ├── sddloader.py                    # sdd dataloader
-├── test_PPT.py                 # testing code
-├── train_PPT.py                # training code
+├── test_PPT.py                     # testing code
+├── train_PPT.py                    # training code
 ├── trainer                         # core operations to train the model
 │   ├── evaluations.py
 │   ├── test_final_trajectory.py
