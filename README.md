@@ -37,9 +37,18 @@ In the final stage, the model aims to address the entire future trajectory task 
 </br>
 
 ## 📖 Implementation
-## Installation
-·Python == 3.7.9
-·
+### Installation
+#### Environment
+* Python == 3.8.3
+
+### Dependencies
+
+Install the dependencies from the `requirements.txt`:
+```linux
+pip install -r requirements.txt
+```
+
+
 
 ## 🔥 News
 
