@@ -37,7 +37,7 @@ In the final stage, the model aims to address the entire future trajectory task 
 </br>
 
 ## 📖 Implementation
-### Installation
+### I. Installation
 #### Environment
  - Python == 3.8.3
 
@@ -96,7 +96,7 @@ After the prepartion work, the whole project should has the following structure:
     
 ```
 
-### Training
+### II. Training
 
 Important configurations.
 
@@ -112,7 +112,7 @@ bash run.sh
 ```
 
 
-### Reproduce
+### III. Reproduce
 
 To get the reported results, following
 
