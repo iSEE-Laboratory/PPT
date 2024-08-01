@@ -41,13 +41,92 @@ In the final stage, the model aims to address the entire future trajectory task 
 #### Environment
 * Python == 3.8.3
 
-### Dependencies
+#### Dependencies
 
 Install the dependencies from the `requirements.txt`:
 ```linux
 pip install -r requirements.txt
 ```
 
+#### Pretrained Models
+
+We provide a complete set of pre-trained models including:
+
+* Well-pretrained model on Task-I:
+* Well-trained model after warm-up:
+* Well-pretrained model on Task-II:
+* Well-trained model on Task-III:
+
+You can download the pretrained models/data from [here](https://drive.google.com/drive/folders/1qx5vbNgyM9aMH9jB_F07w3QIxzzi6StW?usp=sharing).
+
+#### File Structure
+
+After the prepartion work, the whole project should has the following structure:
+
+```
+./MemoNet
+├── README.md
+├── data                            # datasets
+│   ├── social_sdd_test_4096_0_100.pickle
+│   └── social_sdd_train_512_0_100.pickle
+├── models                          # core models
+│   ├── layer_utils.py
+│   ├── model.py
+│   └── ...
+├── requirements.txt
+├── run.sh
+├── sddloader.py                    # sdd dataloader
+├── test_PPT.py                 # testing code
+├── train_PPT.py                # training code
+├── trainer                         # core operations to train the model
+│   ├── evaluations.py
+│   ├── test_final_trajectory.py
+│   └── trainer_AIO.py
+└── training                        # saved models/memory banks
+    └── Pretrained_Models
+       ├── SDD
+       │    ├── Model_ST
+       │    ├── Model_Des_warm
+       │    ├── Model_LT
+       │    └── Model_ALL
+       └── ETH_UCY
+           ├── model_eth_res
+           ├── model_hotel_res
+           └── ...
+    
+```
+
+### Training
+
+Important configurations.
+
+* `--mode`: verify the current training mode, 
+* `--model_Pretrain`: pretrained model path,
+* `--info`: path name to store the models,
+* `--gpu`: number of devices to run the codes,
+
+Training commands.
+
+```linux
+bash run.sh
+```
+
+
+### Reproduce
+
+To get the reported results, following
+
+```linux
+python test_PPT.py --reproduce True --info reproduce --gpu 0
+```
+
+And the code will output: 
+
+```linux
+./training/training_trajectory/model_encdec_trajectory
+Test FDE_48s: 10.650254249572754 ------ Test ADE: 7.032739639282227
+----------------------------------------------------------------------------------------------------
+```
 
 
 ## 🔥 News
