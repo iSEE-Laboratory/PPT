@@ -1,98 +1,107 @@
-# Remember Intentions: Retrospective-Memory-based Trajectory Prediction
+<p align="center">
+<strong>Progressive Pretext Task Learning for Human Trajectory Prediction</strong></h1>
+  <p align="center">
+    <a href='https://xiaotong-lin.github.io/' target='_blank'>Xiaotong Lin</a>&emsp;
+    <a href='https://tmliang.github.io/' target='_blank'>Tianming Liang</a>&emsp;
+    <a href='https://scholar.google.com/citations?user=w3GjGqoAAAAJ' target='_blank'>Jianhuang Lai</a>&emsp;
+    <a href='https://www.isee-ai.cn/~hujianfang/' target='_blank'>Jian-Fang Hu*</a>&emsp;
+    <br>
+    Sun Yat-sen University
+    <br>
+    ECCV 2024
+  </p>
+</p>
 
-**Official PyTorch code** for CVPR'22 paper "Remember Intentions: Retrospective-Memory-based Trajectory Prediction".
+</p>
+<p align="center">
+  <a href='https://arxiv.org/pdf/2407.11588'>
+    <img src='https://img.shields.io/badge/Arxiv-2407.11588-A42C25?style=flat&logo=arXiv&logoColor=A42C25'>
+  </a>
+  <a href=''>
+    <img src='https://img.shields.io/badge/Paper-PDF-yellow?style=flat&logo=arXiv&logoColor=yellow'>
+  </a>
 
-[[Paper]](https://arxiv.org/abs/2203.11474)&nbsp;[[Zhihu]](https://zhuanlan.zhihu.com/p/492362530)
+  <a href='https://github.com/iSEE-Laboratory/PPT'>
+    <img src='https://img.shields.io/badge/GitHub-Code-black?style=flat&logo=github&logoColor=white'></a>
 
-![system design](./imgs/memonet.jpg)
+  </a>
+</p>
 
-**Abstract**: To realize trajectory prediction, most previous methods adopt the parameter-based approach, which encodes all the seen past-future instance pairs into model parameters. However, in this way, the model parameters come from all seen instances, which means a huge amount of irrelevant seen instances might also involve in predicting the current situation, disturbing the performance. To provide a more explicit link between the current situation and the seen instances, we imitate the mechanism of retrospective memory in neuropsychology and propose MemoNet, an instance-based approach that predicts the movement intentions of agents by looking for similar scenarios in the training data. In MemoNet, we design a pair of memory banks to explicitly store representative instances in the training set, acting as prefrontal cortex in the neural system, and a trainable memory addresser to adaptively search a current situation with similar instances in the memory bank, acting like basal ganglia. During prediction, MemoNet recalls previous memory by using the memory addresser to index related instances in the memory bank. We further propose a two-step trajectory prediction system, where the first step is to leverage MemoNet to predict the destination and the second step is to fulfill the whole trajectory according to the predicted destinations. Experiments show that the proposed MemoNet improves the FDE by 20.3\%/10.2\%/28.3\% from the previous best method on SDD/ETH-UCY/NBA datasets. Experiments also show that our MemoNet has the ability to trace back to specific instances during prediction, promoting more interpretability.
+## 🏠 Abstract
+<div style="text-align: center;">
+    <img src="assets/Intro_cmp.jpg" width=100% >
+</div>
+Human trajectory prediction is a practical task of predicting the future positions of pedestrians on the road, which typically covers all temporal ranges from short-term to long-term within a trajectory. However, existing works attempt to address the entire trajectory prediction with a singular, uniform training paradigm, neglecting the distinction between short-term and long-term dynamics in human trajectories. To overcome this limitation, we introduce a novel Progressive Pretext Task learning (PPT) framework, which progressively enhances the model's capacity of capturing short-term dynamics and long-term dependencies for the final entire trajectory prediction. Specifically, we elaborately design three stages of training tasks in the PPT framework. In the first stage, the model learns to comprehend the short-term dynamics through a stepwise next-position prediction task. 
+In the second stage, the model is further enhanced to understand long-term dependencies through a destination prediction task. 
+In the final stage, the model aims to address the entire future trajectory task by taking full advantage of the knowledge from previous stages. To alleviate the knowledge forgetting, we further apply a cross-task knowledge distillation. Additionally, we design a Transformer-based trajectory predictor, which is able to achieve highly efficient two-step reasoning by integrating a destination-driven prediction strategy and a group of learnable prompt embeddings. Extensive experiments on popular benchmarks have demonstrated that our proposed approach achieves state-of-the-art performance with high efficiency.
+</br>
 
+## 📖 Implementation
+### I. Installation
+#### Environment
+ - Python == 3.8.3
 
-We give an example of trajectories predicted by our model and the corresponding ground truth as following:
-
-![system design](./imgs/predictions.png)
-
-Below is an example of prediction interpretability where the first column stands for the current agent. The last three columns stand for the memory instances found by the current agent.
-![system design](./imgs/interpretability.png)
-
-
-## [2022/09] Update: ETH's code & model are available!
-
-You can find the code and the instructions in the **ETH** folder.
-
-## Installation
-
-### Environment
-
-* Tested OS: Linux / RTX 3090
-* Python == 3.7.9
-* PyTorch == 1.7.1+cu110
-
-### Dependencies
+#### Dependencies
 
 Install the dependencies from the `requirements.txt`:
 ```linux
 pip install -r requirements.txt
 ```
 
-### Pretrained Models
+#### Pretrained Models
 
 We provide a complete set of pre-trained models including:
 
-* intention encoder-decoder:
-* learnable addresser:
-* generated memory bank:
-* fulfillment encoder-decoder:
+* Well-pretrained model on Task-I:
+* Well-trained model after warm-up:
+* Well-pretrained model on Task-II:
+* Well-trained model on Task-III:
 
 You can download the pretrained models/data from [here](https://drive.google.com/drive/folders/1qx5vbNgyM9aMH9jB_F07w3QIxzzi6StW?usp=sharing).
 
-
-### File Structure
+#### File Structure
 
 After the prepartion work, the whole project should has the following structure:
 
 ```
 ./MemoNet
-├── ReadMe.md
+├── README.md
 ├── data                            # datasets
-│   ├── test_all_4096_0_100.pickle
-│   └── train_all_512_0_100.pickle
+│   ├── social_sdd_test_4096_0_100.pickle
+│   └── social_sdd_train_512_0_100.pickle
 ├── models                          # core models
 │   ├── layer_utils.py
-│   ├── model_AIO.py
+│   ├── model.py
 │   └── ...
 ├── requirements.txt
 ├── run.sh
 ├── sddloader.py                    # sdd dataloader
-├── test_MemoNet.py                 # testing code
-├── train_MemoNet.py                # training code
+├── test_PPT.py                 # testing code
+├── train_PPT.py                # training code
 ├── trainer                         # core operations to train the model
 │   ├── evaluations.py
 │   ├── test_final_trajectory.py
 │   └── trainer_AIO.py
 └── training                        # saved models/memory banks
-    ├── saved_memory
-    │   ├── sdd_social_filter_fut.pt
-    │   ├── sdd_social_filter_past.pt
-    │   └── sdd_social_part_traj.pt
-    ├── training_ae
-    │   └── model_encdec
-    ├── training_selector
-    │   ├── model_selector
-    │   └── model_selector_warm_up
-    └── training_trajectory
-        └── model_encdec_trajectory
+    └── Pretrained_Models
+       ├── SDD
+       │    ├── Model_ST
+       │    ├── Model_Des_warm
+       │    ├── Model_LT
+       │    └── Model_ALL
+       └── ETH_UCY
+           ├── model_eth_res
+           ├── model_hotel_res
+           └── ...
+    
 ```
 
-
-
-## Training
+### II. Training
 
 Important configurations.
 
 * `--mode`: verify the current training mode, 
-* `--model_ae`: pretrained model path,
+* `--model_Pretrain`: pretrained model path,
 * `--info`: path name to store the models,
 * `--gpu`: number of devices to run the codes,
 
@@ -103,39 +112,59 @@ bash run.sh
 ```
 
 
-## Reproduce
+### III. Reproduce
 
 To get the reported results, following
 
 ```linux
-python test_MemoNet.py --reproduce True --info reproduce --gpu 0
+python test_PPT.py --reproduce True --info reproduce --gpu 0
 ```
 
 And the code will output: 
 
 ```linux
 ./training/training_trajectory/model_encdec_trajectory
-Test FDE_48s: 12.659514427185059 ------ Test ADE: 8.563031196594238
+Test FDE_48s: 10.650254249572754 ------ Test ADE: 7.032739639282227
 ----------------------------------------------------------------------------------------------------
 ```
 
 
+## 🔥 News
 
-## Acknowledgement
 
-Thanks for the framework provided by `Marchetz/MANTRA-CVPR20`, which is source code of the published work MANTRA in CVPR-2020. The github repo is [MANTRA code](https://github.com/Marchetz/MANTRA-CVPR20). We borrow the framework and interface from the code.
+## 📝 TODO List
+- [ ] Data preparation.
+- [ ] Release training and evaluation codes.
+- [ ] Release checkpoints.
 
-We also thank for the pre-processed data provided by the works of PECNet ([paper](https://link.springer.com/chapter/10.1007%2F978-3-030-58536-5_45),[code](https://github.com/j2k0618/PECNet_nuScenes)).
+## 🔍 Overview
 
-## Citation
+<p align="center">
+  <img src="./assets/Architecture.jpg" width=100% >
+</p>
+As shown, we propose a Progressive Pretext Task learning (PPT) framework for trajectory prediction, aiming to incrementally enhance the model's capacity to understand the past trajectory and predict the future trajectory.
+Specifically, our framework consists of three stages of progressive training tasks, as illustrated in subfigure (b). In Stage I, we pretrain our predictor on pretext Task-I, aiming to fully understand the short-term dynamics of each trajectory, by predicting the next position of a trajectory of arbitrary length. In Stage II, we further train the predictor on pretext Task-II, intending to capture the long-term dependencies, by predicting the destination of a trajectory.
+Once Task-I and Task-II are completed, the model is capable of capturing both the short-term dynamics and long-term dependencies within the trajectory. Finally, in Stage III, we duplicate our model to obtain two predictors: one for destination prediction and another for intermediate prediction. In this stage, we perform Task-III that enables the model to achieve the complete pedestrian trajectory prediction.
+For the sake of stable training, we further employ a cross-task knowledge distillation to avoid knowledge forgetting.
+<!-- 
+### 🧪 Experimental Results
 
-If you use this code, please cite our paper:
+#### Qualitative Comparisons with Pure Diffusion
+<p align="center">
+  <img src="assets/results.png" align="center" width="100%">
+</p> -->
 
-```
-@InProceedings{MemoNet_2022_CVPR,
-author = {Xu, Chenxin and Mao, Weibo and Zhang, Wenjun and Chen, Siheng},
-title = {Remember Intentions: Retrospective-Memory-based Trajectory Prediction},
-booktitle = {The IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
-year = {2022}
+
+## 🔗 Citation
+
+If you find our work helpful, please cite:
+
+```bibtex
+@inproceedings{
+   lin2024progressive,
+   title={Progressive Pretext Task Learning for Human Trajectory Prediction},
+   author={Lin, Xiaotong and Liang, Tianming and Lai, Jianhuang and Hu, Jian-Fang},
+   booktitle={ECCV},
+   year={2024},
 }
 ```
