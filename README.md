@@ -57,7 +57,7 @@ We provide a complete set of pre-trained models including:
 * Well-pretrained model on Task-II:
 * Well-trained model on Task-III:
 
-You can download the pretrained models/data from [here]([https://drive.google.com/drive/folders/1qx5vbNgyM9aMH9jB_F07w3QIxzzi6StW?usp=sharing](https://drive.google.com/drive/folders/13ncPnZPFE7cPHZ8KiCYkfeC_2avbg_lr?usp=sharing)).
+You can download the pretrained models/data from [here](https://drive.google.com/drive/folders/13ncPnZPFE7cPHZ8KiCYkfeC_2avbg_lr?usp=sharing).
 
 #### File Structure
 
