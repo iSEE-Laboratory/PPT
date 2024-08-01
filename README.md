@@ -129,14 +129,6 @@ Test FDE_48s: 10.650254249572754 ------ Test ADE: 7.032739639282227
 ```
 
 
-## 🔥 News
-
-
-## 📝 TODO List
-- [ ] Data preparation.
-- [ ] Release training and evaluation codes.
-- [ ] Release checkpoints.
-
 ## 🔍 Overview
 
 <p align="center">
