@@ -123,7 +123,8 @@ python test_PPT.py --reproduce True --info reproduce --gpu 0
 And the code will output: 
 
 ```linux
-./training/training_trajectory/model_encdec_trajectory
+./training/Pretrained_Models/SDD/model_ALL
+Loaded data!
 Test FDE_48s: 10.650254249572754 ------ Test ADE: 7.032739639282227
 ----------------------------------------------------------------------------------------------------
 ```
