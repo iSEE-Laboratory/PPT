@@ -40,6 +40,7 @@ In the final stage, the model aims to address the entire future trajectory task 
 ### I. Installation
 #### Environment
  - Python == 3.8.3
+ - Pytorch == 1.7.0
 
 #### Dependencies
 
