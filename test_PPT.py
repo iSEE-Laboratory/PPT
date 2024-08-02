@@ -1,5 +1,5 @@
 import argparse
-from trainer import test_final_trajectory as trainer_ae
+from trainer import test_final_trajectory as trainer_ppt
 
 import numpy as np
 import random
@@ -28,7 +28,7 @@ def parse_config():
     parser.add_argument("--dist_thresh", type=int, default=100)
     
     parser.add_argument('--gpu', type=int, default=0)
-    parser.add_argument("--model_ae", default='./training/training_ae/...')
+    parser.add_argument("--model_Pretrain", default='./training/...')
 
     parser.add_argument("--reproduce", default=False)
     
@@ -43,14 +43,14 @@ def parse_config():
 
 def main(config):
     if config.reproduce:
-        config.model_ae = './training/Pretrained_Models/SDD/model_ALL'
-        print(config.model_ae)
-        t = trainer_ae.Trainer(config)
+        config.model_Pretrain = './training/Pretrained_Models/SDD/model_ALL'
+        print(config.model_Pretrain)
+        t = trainer_ppt.Trainer(config)
         t.fit()
     else:
-        config.model_ae = './training/training_ALL/YOUR_PATH/CHECKPOINT'
-        print(config.model_ae)
-        t = trainer_ae.Trainer(config)
+        config.model_Pretrain = './training/training_ALL/YOUR_PATH/CHECKPOINT'
+        print(config.model_Pretrain)
+        t = trainer_ppt.Trainer(config)
         t.fit()
 
 
