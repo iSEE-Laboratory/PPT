@@ -48,7 +48,6 @@ def main(config):
         t = trainer_ppt.Trainer(config)
         t.fit()
     else:
-        config.model_Pretrain = './training/training_ALL/YOUR_PATH/CHECKPOINT'
         print(config.model_Pretrain)
         t = trainer_ppt.Trainer(config)
         t.fit()
