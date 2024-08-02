@@ -104,34 +104,6 @@ class CausalSelfAttention(nn.Module):
         return y
 
 
-class Social_Batch_Attention(nn.Module):
-    """
-    A vanilla multi-head masked self-attention layer with a projection at the end.
-    It is possible to use torch.nn.MultiheadAttention here but I am including an
-    explicit implementation here to show that there is nothing too scary here.
-    """
-
-    def __init__(self, config):
-        super().__init__()
-        assert config.n_embd % config.n_head == 0
-        # key, query, value projections for all heads, but in a batch
-        self.c_attn = nn.Linear(config.n_embd*2, 3 * config.n_embd*2)
-        # output projection
-        self.c_proj = nn.Linear(config.n_embd*2, config.n_embd)
-        self.n_head = config.n_head
-        self.n_embd = config.n_embd
-
-    def forward(self, x, mask_type='causal'):
-        q, k, v = self.c_attn(x).split(self.n_embd*2, dim=2) # calculate query, key, values for all heads in batch and move head forward to be the batch dim
-
-        # causal self-attention; Self-attend: (B, nh, T, hs) x (B, nh, hs, T) -> (B, nh, T, T)
-        att = (q @ k.transpose(-2, -1)) * (1.0 / math.sqrt(k.size(-1)))
-        att = F.softmax(att, dim=-1)
-        y = att @ v # (B, nh, T, T) x (B, nh, T, hs) -> (B, nh, T, hs)
-        # output projection
-        y = self.c_proj(y)
-        return y
-
 
 class Block(nn.Module):
     """ an unassuming Transformer block """
