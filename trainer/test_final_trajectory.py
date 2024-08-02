@@ -46,8 +46,8 @@ class Trainer:
 
         config.mode = 'ALL'
         # model
-        self.model_ae = torch.load(config.model_ae, map_location=torch.device('cpu')).cuda()
-        self.model = Final_Model(config, self.model_ae)
+        self.model_Pretrain = torch.load(config.model_Pretrain, map_location=torch.device('cpu')).cuda()
+        self.model = Final_Model(config, self.model_Pretrain)
 
         if config.cuda:
             self.model = self.model.cuda()
