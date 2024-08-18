@@ -156,7 +156,7 @@ For the sake of stable training, we further employ a cross-task knowledge distil
 
 ## 👏 Acknowledgements
 
-We sincerely thank the authors of [MemoNet](https://github.com/MediaBrain-SJTU/MemoNet?tab=readme-ov-file) for providing the framework and source code from their CVPR 2022 publication. We also appreciate the pre-processed data from [PECNet](https://karttikeya.github.io/publication/htf/). These resources have been invaluable to our work, and we are immensely grateful for their support.
+We sincerely thank the authors of [MemoNet](https://github.com/MediaBrain-SJTU/MemoNet?tab=readme-ov-file) for providing the source code from their CVPR 2022 publication. We also appreciate the pre-processed data from [PECNet](https://karttikeya.github.io/publication/htf/). These resources have been invaluable to our work, and we are immensely grateful for their support.
 
 
 
