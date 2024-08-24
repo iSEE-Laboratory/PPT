@@ -69,8 +69,6 @@ class Trainer:
             train_dataset = SocialDataset(data_folder, set_name="train", b_size=256, t_tresh=0, d_tresh=50, scene=config.data_scene)
             val_dataset = SocialDataset(data_folder, set_name="test", b_size=256, t_tresh=0, d_tresh=50, scene=config.data_scene)
 
-        # Initialize dataloaders
-
         self.train_loader = DataLoader(train_dataset, batch_size=1, collate_fn=socialtraj_collate, shuffle=True)
         self.val_loader = DataLoader(val_dataset, batch_size=1, collate_fn=socialtraj_collate)
         print('Loaded data!')
@@ -89,8 +87,7 @@ class Trainer:
 
         # optimizer and learning rate
         self.criterionLoss = nn.MSELoss()
-        # if config.mode == 'addressor':
-        #     config.learning_rate = 1e-6
+        
         if config.mode == 'ALL':
             self.opt = torch.optim.Adam([
                 {"params":[param for name, param in self.model.named_parameters() if 'traj_' in name]},
