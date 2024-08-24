@@ -92,7 +92,7 @@ class Trainer:
             self.opt = torch.optim.Adam([
                 {"params":[param for name, param in self.model.named_parameters() if 'traj_' in name]},
                 {"params":[param for name, param in self.model.named_parameters() if 'traj_' not in name], "lr":config.learning_rate_des},],
-                lr=config.learning_rate, #默认参数
+                lr=config.learning_rate,
             )
         else:
             self.opt = torch.optim.Adam(self.model.parameters(), lr=config.learning_rate)
