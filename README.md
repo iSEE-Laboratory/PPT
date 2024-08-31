@@ -49,7 +49,7 @@ Install the dependencies from the `requirements.txt`:
 pip install -r requirements.txt
 ```
 
-#### Pretrained Models and Pre-processed data
+#### Pretrained Models and Pre-processed Data
 
 We provide a complete set of pre-trained models including:
 
