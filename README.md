@@ -49,7 +49,7 @@ Install the dependencies from the `requirements.txt`:
 pip install -r requirements.txt
 ```
 
-#### Pretrained Models
+#### Pretrained Models and Pre-processed data
 
 We provide a complete set of pre-trained models including:
 
@@ -58,7 +58,7 @@ We provide a complete set of pre-trained models including:
 * Well-pretrained model on Task-II:
 * Well-trained model on Task-III:
 
-You can download the pretrained models/data from [here](https://drive.google.com/drive/folders/13ncPnZPFE7cPHZ8KiCYkfeC_2avbg_lr?usp=sharing).
+You can download the pretrained models and the pre-processed data from [here](https://drive.google.com/drive/folders/13ncPnZPFE7cPHZ8KiCYkfeC_2avbg_lr?usp=sharing).
 
 #### File Structure
 
