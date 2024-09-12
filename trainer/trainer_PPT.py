@@ -77,6 +77,7 @@ class Trainer:
 
         self.max_epochs = config.max_epochs
 
+        # Initialize model
         if config.mode == 'Short_term':
             self.model = Final_Model(config)
         else:
@@ -146,6 +147,7 @@ class Trainer:
             self.logger.info('Loss: {}'.format(loss))
             self.tb_writer.add_scalar('train/loss', loss, epoch)
 
+            # validation
             if (epoch + 1) % 1 == 0:
                 self.model.eval()
                 if self.config.mode == 'Short_term':
@@ -194,7 +196,7 @@ class Trainer:
         loss_recon = torch.sum(min_distances) / distances.shape[0]
         return loss_recon
 
-    def loss_function(self, pred, gt):  # pred:[B, 20, 2]   gt:[B, 8, 2]
+    def loss_function(self, pred, gt):  # pred:[B, 20, 2]
         # joint loss
         JL = self.joint_loss(pred) if self.config.lambda_j > 0 else 0.0
         RECON = self.recon_loss(pred, gt) if self.config.lambda_recon > 0 else 0.0
@@ -233,7 +235,7 @@ class Trainer:
         # loss_recon = dist.min(dim=1)[0].mean()
         return loss_recon
 
-    def loss_function_traj(self, pred, gt):  # pred:[B, 20, 2]   gt:[B, 8, 2]
+    def loss_function_traj(self, pred, gt):
         # joint loss
         JL = self.joint_loss_traj(pred) if self.config.lambda_trajj > 0 else 0.0
         RECON = self.recon_loss_traj(pred, gt) if self.config.lambda_trajrecon > 0 else 0.0
@@ -256,22 +258,22 @@ class Trainer:
             loss += self.criterionLoss(y[idx], pred[idx])
         return loss
 
-    def L2_Loss(self, pred, gt):     # pred:[B, nf, 2]   gt:[B, nf, 2]
+    def L2_Loss(self, pred, gt):
         distances = torch.norm(pred - gt, dim=2)
         loss = torch.sum(torch.mean(distances, dim=1))
         return loss / distances.shape[0]
 
-    def L2_Loss_i(self, pred, gt):     # pred:[B, nf, 2]   gt:[B, nf, 2]
+    def L2_Loss_i(self, pred, gt):
         distances = torch.norm(pred - gt, dim=2)
         loss = torch.mean(distances, dim=1)
         return loss
 
-    def criterionLoss_i(self, pred, gt):     # pred:[B, nf, 2]   gt:[B, nf, 2]
+    def criterionLoss_i(self, pred, gt):
         distances = torch.sum(torch.sum((pred - gt) * (pred - gt), -1), -1)
         loss = distances / gt.size(-1) / gt.size(-2)
         return loss
 
-    def traj_constraint(self, traj):     # pred:[B, nf, 2]   gt:[B, nf, 2]
+    def traj_constraint(self, traj):
         vel = torch.norm(traj[:, 1:] - traj[:, :-1], dim=2)
         loss = torch.sum(torch.abs(vel[:, 1:] - vel[:, :-1]))
         return loss / traj.shape[0]
