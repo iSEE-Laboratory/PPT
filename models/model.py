@@ -276,7 +276,6 @@ class GPT(nn.Module):
             x = self.transformer.drop(tok_emb + pos_emb)
         elif mask_type == 'pred_3points':
             pos = torch.arange(0, t, dtype=torch.long, device=device).unsqueeze(0) # shape (1, t)
-            # 修改了一下位置编码
             pos[0, -4] = 11
             pos[0, -3] = 14
             pos[0, -2] = 17
@@ -354,15 +353,7 @@ class Final_Model(nn.Module):
                     self.traj_transform_traj = nn.Linear(config.n_embd, config.n_embd)
                     self.traj_transform_des = nn.Linear(config.n_embd, config.n_embd)
 
-                    # self.traj_trans_layer = GPT(config)
-                    # self.traj_encoder = nn.Linear(config.vocab_size, config.n_embd)
-                    # self.traj_rand_fut_token = nn.Parameter(torch.rand(1, 11, config.n_embd))
-                    # self.traj_fut_token_encoder = nn.Linear(config.n_embd, config.n_embd)
-                    # self.traj_decoder_9 = nn.Linear(config.n_embd, config.vocab_size)
-                    # self.traj_decoder = nn.Linear(config.n_embd, config.vocab_size)
-                    # self.traj_decoder_20 = MLP(config.n_embd, config.vocab_size, (512, 512, 512))
-
-
+    
     def get_trajectory(self, past, abs_past, seq_start_end, end_pose):
         predictions = torch.Tensor().cuda()
 
@@ -374,10 +365,10 @@ class Final_Model(nn.Module):
         pred_des = self.predictor_Des(feat[:, -1])
         destination_prediction = pred_des.view(pred_des.size(0), 20, -1)
 
+        # generate N=20 future trajectories
         for i in range(20):
             fut_token = repeat(self.traj_rand_fut_token, '() n d -> b n d', b=past.size(0))
 
-            # ----------- Block 1 --------------
             past_feat = self.traj_encoder(past)
             fut_feat = self.traj_fut_token_encoder(fut_token)
             des_feat = self.traj_encoder(destination_prediction[:, i])
@@ -408,9 +399,11 @@ class Final_Model(nn.Module):
             des_state = self.des_encoder(des_token)
             traj_state = torch.cat((past_state, des_state), dim=1)
             feat = self.AR_Model(traj_state)
+            # generate 20 destinations for each trajectory
             pred_des = self.predictor_Des(feat[:, -1])
             return pred_des.view(pred_des.size(0), 20, -1)
         elif self.mode == 'ALL':
+            # First predict 20 destinations for each trajectory
             past_state = self.Traj_encoder(past)
             des_token = repeat(self.rand_token, '() n d -> b n d', b=past.size(0))
             des_state = self.des_encoder(des_token)
@@ -424,6 +417,7 @@ class Final_Model(nn.Module):
             destination_prediction = min_des_traj
             fut_token = repeat(self.traj_rand_fut_token, '() n d -> b n d', b=past.size(0))
 
+            # Then generate the remaining trajectory points
             past_feat = self.traj_encoder(past)
             fut_feat = self.traj_fut_token_encoder(fut_token)
             des_feat = self.traj_encoder(destination_prediction)
@@ -437,6 +431,7 @@ class Final_Model(nn.Module):
             # for t in range(1, 12):
             #     total_prediction[:, t - 1:t] = total_prediction[:, t - 1:t] + destination_prediction.unsqueeze(1) * t / 12
 
+            # the features for cross-task knowledge distillation
             transform_traj_feat = self.traj_transform_traj(prediction_feat[:, self.past_len - 1:-1])
             transform_des_feat = self.traj_transform_des(feat[:, -1])
 
