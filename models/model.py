@@ -348,8 +348,8 @@ class Final_Model(nn.Module):
                     self.traj_rand_fut_token = nn.Parameter(deepcopy(pretrained_model.rand_token.data.repeat(1, 11, 1)))
                     self.traj_fut_token_encoder = deepcopy(pretrained_model.des_encoder)
                     self.traj_decoder = nn.Linear(config.n_embd, config.vocab_size)
-                    self.traj_decoder_9 = nn.Linear(config.n_embd, config.vocab_size)
-                    self.traj_decoder_20 = MLP(config.n_embd, config.vocab_size, (512, 512, 512))
+                    self.traj_decoder_9 = nn.Linear(config.n_embd, config.vocab_size)    # trajectory decoder for the 9th trajectory point
+                    self.traj_decoder_20 = MLP(config.n_embd, config.vocab_size, (512, 512, 512))    # trajectory decoder for the 20th trajectory point
                     self.traj_transform_traj = nn.Linear(config.n_embd, config.n_embd)
                     self.traj_transform_des = nn.Linear(config.n_embd, config.n_embd)
 
@@ -399,8 +399,7 @@ class Final_Model(nn.Module):
             des_state = self.des_encoder(des_token)
             traj_state = torch.cat((past_state, des_state), dim=1)
             feat = self.AR_Model(traj_state)
-            # generate 20 destinations for each trajectory
-            pred_des = self.predictor_Des(feat[:, -1])
+            pred_des = self.predictor_Des(feat[:, -1])    # generate 20 destinations for each trajectory
             return pred_des.view(pred_des.size(0), 20, -1)
         elif self.mode == 'ALL':
             # First predict 20 destinations for each trajectory
