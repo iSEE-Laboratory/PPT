@@ -321,7 +321,6 @@ class Trainer:
             elif self.config.mode == 'ALL':
                 traj_state = self.model_ST.traj_encoder_1(traj_norm[:, :-1])
                 traj_feat = self.model_ST.AR_Model(traj_state, mask_type='causal')
-                teacher_traj = self.model_ST.predictor_1(traj_feat)
 
                 past_state = self.model_LT.Traj_encoder(x)
                 des_token = repeat(self.model_LT.rand_token, '() n d -> b n d', b=x.size(0))
