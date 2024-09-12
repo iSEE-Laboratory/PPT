@@ -325,7 +325,7 @@ class Trainer:
                 past_state = self.model_LT.Traj_encoder(x)
                 des_token = repeat(self.model_LT.rand_token, '() n d -> b n d', b=x.size(0))
                 des_state = self.model_LT.des_encoder(des_token)
-                soft_feat = self.model_LT.AR_Model(torch.cat((past_state, des_state), dim=1))
+                des_feat = self.model_LT.AR_Model(torch.cat((past_state, des_state), dim=1))
 
                 pred_results, des_pred_feat, traj_pred_feat, pred_des = self.model(x, abs_past, seq_start_end, initial_pose, destination, epoch)
 
@@ -335,7 +335,7 @@ class Trainer:
                 loss += self.L2_Loss(pred_results, y)
                 loss += self.config.lambda_desloss * self.L2_Loss(pred_des.unsqueeze(1), y[:, -1:])
                 loss += self.config.traj_lambda_soft * self.criterionLoss(traj_pred_feat, traj_feat[:, self.config.past_len - 1:])  # soft loss
-                loss += self.config.des_lambda_soft * self.criterionLoss(des_pred_feat, soft_feat[:, -1])
+                loss += self.config.des_lambda_soft * self.criterionLoss(des_pred_feat, des_feat[:, -1])
 
                 loss.backward()
                 torch.nn.utils.clip_grad_norm_(self.model.parameters(), 1.0, norm_type=2)
