@@ -126,7 +126,7 @@ bash run.sh
 To get the reported results, following
 
 ```linux
-python test_PPT.py --reproduce True --info reproduce --gpu 0
+python test_PPT.py --info reproduce --reproduce --gpu 0
 ```
 
 And the code will output: 
