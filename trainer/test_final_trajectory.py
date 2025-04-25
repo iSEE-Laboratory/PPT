@@ -1,11 +1,14 @@
 import os
 import datetime
+
+import numpy as np
 import torch
 import torch.nn as nn
 from models.model_test_trajectory import Final_Model
 from torch.utils.data import DataLoader
 
 from dataset_loader import *
+from vis_ethucy import *
 
 torch.set_num_threads(5)
 
@@ -26,6 +29,11 @@ class Trainer:
         elif config.dataset_name == 'eth':
             data_folder = 'data/ETH_UCY'
             test_dataset = SocialDataset(data_folder, set_name="test", b_size=4096, t_tresh=0, d_tresh=50, scene=config.data_scene)
+
+        if config.vis and config.dataset_name == 'eth':
+            self.homo_mat = {}
+            for scene in ['eth', 'hotel', 'univ', 'zara1', 'zara2']:
+                self.homo_mat[scene] = np.loadtxt(f'./data/ETH_image/{scene}_H.txt')
 
         # Initialize dataloaders
         self.test_dataset = DataLoader(test_dataset, batch_size=1, collate_fn=socialtraj_collate)
@@ -80,10 +88,10 @@ class Trainer:
         dict_metrics = {}
         self.model.eval()
 
-        gt_arr = []
-        gt_abs_arr = []
-        min_pred_arr = []
-        pred_arr = []
+        past_gt = []
+        fut_gt = []
+        fut_pred_20 = []
+        fut_pred_best = []
 
         with torch.no_grad():
             for _, (trajectory, mask, initial_pos, seq_start_end) in enumerate(dataset):
@@ -96,7 +104,7 @@ class Trainer:
                 gt = traj_norm[:, 1:self.config.past_len + 1, :]
 
                 abs_past = trajectory[:, :self.config.past_len, :]
-                initial_pose = trajectory[:, self.config.past_len - 1, :]
+                initial_pose = trajectory[:, self.config.past_len - 1:self.config.past_len, :]
                 
                 output = self.model(x, abs_past, seq_start_end, initial_pose)
                 output = output.data
@@ -116,9 +124,47 @@ class Trainer:
 
                 samples += distances.shape[0]
 
+                if self.config.vis:
+                    if self.config.dataset_name == 'eth':
+                        # Transform trajectories from world coordinate system to pixel/image space
+                        trajectory_ = np.concatenate((trajectory.cpu().numpy(), np.ones((trajectory.size(0), trajectory.size(1), 1))), -1)
+                        trajectory_ = np.matmul(np.linalg.inv(self.homo_mat[self.config.data_scene]), trajectory_.transpose(0, 2, 1)).transpose(0, 2, 1)
+                        trajectory_ /= trajectory_[:, :, -1:]
+
+                        output_ = output + initial_pose.unsqueeze(1)
+                        output_ = np.concatenate((output_.cpu().numpy(), np.ones((output_.size(0), output_.size(1), output_.size(2), 1))), -1)
+                        output_ = np.matmul(np.linalg.inv(self.homo_mat[self.config.data_scene]), output_.transpose(0, 1, 3, 2)).transpose(0, 1, 3, 2)
+                        output_ /= output_[:, :, :, -1:]
+
+                        if self.config.data_scene == 'eth' or self.config.data_scene == 'ucy':
+                            trajectory_ = np.concatenate((trajectory_[:, :, 1:2], trajectory_[:, :, :1]), -1)
+                            output_ = np.concatenate((output_[:, :, :, 1:2], output_[:, :, :, :1]), -1)
+                        else:
+                            trajectory_ = trajectory_[:, :, :2]
+                            output_ = output_[:, :, :, :2]
+
+                    elif self.config.dataset_name == 'sdd':
+                        trajectory_ = trajectory.cpu().numpy()
+                        output_ = output.cpu().numpy()
+
+                    past_gt.append(trajectory_[:, :self.config.past_len])
+                    fut_gt.append(trajectory_[:, self.config.past_len:])
+                    fut_pred_20.append(output_)
+                    fut_pred_best.append(output_[np.arange(0, len(ade_index_min)), ade_index_min.cpu().numpy()])
+
 
             dict_metrics['fde_48s'] = fde_48s / samples
             dict_metrics['ade_48s'] = ade_48s / samples
 
+            if self.config.vis:
+                past_gt = np.concatenate(past_gt, 0)
+                fut_gt = np.concatenate(fut_gt, 0)
+                fut_pred_20 = np.concatenate(fut_pred_20, 0)
+                fut_pred_best = np.concatenate(fut_pred_best, 0)
+
+                if self.config.dataset_name == 'eth':
+                    vis_ETH(self.config.data_scene, past_gt, fut_gt, fut_pred_20, fut_pred_best)
+                # else:
+                    # vis_SDD(past_gt, fut_gt, fut_pred_20, fut_pred_best)
 
         return dict_metrics
