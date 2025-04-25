@@ -72,6 +72,10 @@ After the preparation work, the whole project should has the following structure
 │   │   ├── social_eth_test_256_0_50.pickle
 │   │   ├── social_eth_train_256_0_50.pickle
 │   │   └── ...
+│   ├── ETH_image
+│   │   ├── eth.jpg
+│   │   ├── eth_H.txt
+│   │   └── ...
 │   ├── social_sdd_test_4096_0_100.pickle
 │   └── social_sdd_train_512_0_100.pickle
 ├── models                          # core models
