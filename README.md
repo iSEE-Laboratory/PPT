@@ -126,7 +126,7 @@ bash run.sh
 To get the reported results, following
 
 ```linux
-python test_PPT.py --info reproduce --reproduce --gpu 0
+python test_PPT.py --reproduce --info reproduce --gpu 0
 ```
 
 And the code will output: 
@@ -145,7 +145,7 @@ Test FDE_48s: 10.650254249572754 ------ Test ADE: 7.032739639282227
 We also provide the visualization code for the ETH/UCY dataset. For example, to visualize results in the univ scene, use the following command:
 
 ```linux
-python test_PPT.py --gpu 0 --model_Pretrain './training/Pretrained_Models/ETH_UCY/model_univ' --dataset_name eth --data_scene 'univ' --vis
+python test_PPT.py --vis --dataset_name eth --data_scene 'univ' --model_Pretrain './training/Pretrained_Models/ETH_UCY/model_univ' --gpu 0
 ```
 
 ## 🔍 Overview
