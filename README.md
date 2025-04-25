@@ -51,7 +51,7 @@ pip install -r requirements.txt
 
 #### Pre-trained Models and Pre-processed Data
 
-We provide a complete set of pre-trained models including:
+We provide a complete set of pre-trained models, including:
 
 * Well-pretrained model on Task-I:
 * The model after warm-up:
@@ -62,7 +62,7 @@ You can download the pre-trained models and the pre-processed data from [here](h
 
 #### File Structure
 
-After the prepartion work, the whole project should has the following structure:
+After the preparation work, the whole project should has the following structure:
 
 ```
 ./MemoNet
@@ -134,6 +134,15 @@ Test FDE_48s: 10.650254249572754 ------ Test ADE: 7.032739639282227
 ----------------------------------------------------------------------------------------------------
 ```
 
+
+
+### IV. Visualization
+
+We also provide the visualization code for the ETH/UCY dataset. For example, to visualize results in the univ scene, use the following command:
+
+```linux
+python test_PPT.py --gpu 0 --model_Pretrain './training/Pretrained_Models/ETH_UCY/model_univ' --dataset_name eth --data_scene 'univ' --vis
+```
 
 ## 🔍 Overview
 
