@@ -142,7 +142,7 @@ Test FDE_48s: 10.650254249572754 ------ Test ADE: 7.032739639282227
 
 ### IV. Visualization
 
-We also provide the visualization code for the ETH/UCY dataset. For example, to visualize results in the univ scene, use the following command:
+We also provide the visualization code for the ETH/UCY dataset. For example, to visualize trajectories in the univ scene, use the following command:
 
 ```linux
 python test_PPT.py --vis --dataset_name eth --data_scene 'univ' --model_Pretrain './training/Pretrained_Models/ETH_UCY/model_univ' --gpu 0
